@@ -1,0 +1,60 @@
+import ratpackrocker.example.RockerCompile
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+
+    dependencies {
+        classpath 'io.ratpack:ratpack-gradle:1.4.4'
+    }
+}
+
+plugins {
+    id 'idea'
+    id 'com.gradle.build-scan' version '1.3'
+}
+
+buildScan {
+    licenseAgreementUrl = 'https://gradle.com/terms-of-service'
+    licenseAgree = 'yes'
+    publishAlways()
+}
+
+apply plugin: 'groovy'
+apply plugin: 'io.ratpack.ratpack-java'
+
+repositories {
+    jcenter()
+}
+
+configurations {
+    rockerCompile
+}
+
+dependencies {
+    compile ratpack.dependency("guice")
+    compile 'com.fizzed:rocker-runtime:0.12.3'
+
+    runtime 'org.slf4j:slf4j-simple:1.7.22'
+
+    rockerCompile 'com.fizzed:rocker-compiler:0.12.3'
+}
+
+mainClassName = "ratpackrocker.example.Main"
+
+def generateRockerTemplates = tasks.create("createRockerTemplates", RockerCompile) {
+    rockerClasspath = project.configurations.rockerCompile
+    templateDir = file("src/rocker")
+    outputDir = file("src/generated/rocker")
+}
+
+sourceSets.main.resources.with {
+    srcDir createRockerTemplates.templateDir
+    filter.exclude "**/*.rocker.html"
+}
+
+sourceSets.main.java.srcDir createRockerTemplates.outputDir
+tasks.compileJava.dependsOn createRockerTemplates
+
+clean.dependsOn tasks.cleanCreateRockerTemplates
