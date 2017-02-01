@@ -18,7 +18,7 @@ public class Home extends com.fizzed.rocker.runtime.DefaultRockerModel {
     static public final String TEMPLATE_NAME = "Home.rocker.html";
     static public final String TEMPLATE_PACKAGE_NAME = "ratpackrocker.example";
     static public final String HEADER_HASH = "69072368";
-    static public final long MODIFIED_AT = 1485910357000L;
+    static public final long MODIFIED_AT = 1485913241000L;
     static public final String[] ARGUMENT_NAMES = { };
 
     static public Home template() {
@@ -33,6 +33,14 @@ public class Home extends com.fizzed.rocker.runtime.DefaultRockerModel {
 
     static public class Template extends com.fizzed.rocker.runtime.DefaultRockerTemplate {
 
+        // <html>\n    <head>\n        <title>Example Home</title>\n    </head>\n    <body>\n        This is a test\n    </body>\n</html>
+        static private final byte[] PLAIN_TEXT_0_0;
+
+        static {
+            PlainTextUnloadedClassLoader loader = PlainTextUnloadedClassLoader.tryLoad(Home.class.getClassLoader(), Home.class.getName() + "$PlainText", "UTF-8");
+            PLAIN_TEXT_0_0 = loader.tryGet("PLAIN_TEXT_0_0");
+        }
+
         public Template(Home model) {
             super(model);
             __internal.setCharset("UTF-8");
@@ -43,7 +51,16 @@ public class Home extends com.fizzed.rocker.runtime.DefaultRockerModel {
 
         @Override
         protected void __doRender() throws IOException, RenderingException {
+            // PlainText @ [1:1]
+            __internal.aboutToExecutePosInTemplate(1, 1);
+            __internal.writeValue(PLAIN_TEXT_0_0);
         }
+    }
+
+    private static class PlainText {
+
+        static private final String PLAIN_TEXT_0_0 = "<html>\n    <head>\n        <title>Example Home</title>\n    </head>\n    <body>\n        This is a test\n    </body>\n</html>";
+
     }
 
 }

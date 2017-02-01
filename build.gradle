@@ -41,7 +41,7 @@ dependencies {
     rockerCompile 'com.fizzed:rocker-compiler:0.12.3'
 }
 
-mainClassName = "ratpackrocker.example.Main"
+mainClassName = "ratpackrocker.example.ExampleMain"
 
 def generateRockerTemplates = tasks.create("createRockerTemplates", RockerCompile) {
     rockerClasspath = project.configurations.rockerCompile
