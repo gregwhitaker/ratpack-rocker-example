@@ -1,5 +1,6 @@
 ratpack-rocker-example
 ===
+[![Build Status](https://travis-ci.org/gregwhitaker/ratpack-rocker-example.svg?branch=master)](https://travis-ci.org/gregwhitaker/ratpack-rocker-example)
 
 Example of rendering HTML using [Rocker](https://github.com/fizzed/rocker) templates in [Ratpack](https://ratpack.io/).
 
