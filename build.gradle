@@ -43,6 +43,10 @@ dependencies {
 
 mainClassName = "ratpackrocker.example.ExampleMain"
 
+idea.module.generatedSourceDirs = [
+        file("src/generated/rocker")
+]
+
 def generateRockerTemplates = tasks.create("createRockerTemplates", RockerCompile) {
     rockerClasspath = project.configurations.rockerCompile
     templateDir = file("src/rocker")

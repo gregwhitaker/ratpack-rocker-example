@@ -1,14 +1,52 @@
+@import ratpackrocker.example.service.model.NumberBuckets
+
+@args (NumberBuckets numberBuckets)
 <html xmlns="http://www.w3.org/1999/html">
     <head>
         <title>Ratpack Rocker Example</title>
         <link href="css/bootstrap.css" rel="stylesheet">
     </head>
     <body>
-        <h2>Ratpack Rocker Example</h2>
-        <p>This example generates 10 random numbers between 1 and the number selected by you.  The numbers are then sorted into odd and event buckets.</p>
-        <form action="/">
-            Enter a Number: <input type="text" value="10">
-            <input type="submit">
-        </form>
+        <div class="container">
+            <h2>Ratpack Rocker Example</h2>
+            <p>This example generates 10 random numbers between 1 and the number selected by you.  The numbers are then sorted into odd and event buckets.</p>
+            <form action="/" method="post">
+                Enter a Number: <br>
+                <input type="number" min="0" max="@Integer.MAX_VALUE" value="100" name="maxValue"><br>
+                <input type="submit">
+            </form>
+            @if (numberBuckets != null) {
+            <div>
+                <table style="float: left; margin-right: 10px">
+                    <thead>
+                        <tr>
+                            <th>Even Numbers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (num : numberBuckets.getEvenBucket()) {
+                        <tr>
+                            <td>@num</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+                <table style="float: left">
+                    <thead>
+                        <tr>
+                            <th>Odd Numbers</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @for (num : numberBuckets.getOddBucket()) {
+                        <tr>
+                            <td>@num</td>
+                        </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            }
+        </div>
     </body>
 </html>

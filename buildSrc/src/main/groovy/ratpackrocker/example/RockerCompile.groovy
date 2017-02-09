@@ -40,4 +40,5 @@ class RockerCompile extends DefaultTask {
             throw new RuntimeException("Rocker template compilation failed: " + out.toString())
         }
     }
+
 }
