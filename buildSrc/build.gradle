@@ -3,7 +3,3 @@ apply plugin: 'groovy'
 repositories {
     jcenter()
 }
-
-dependencies {
-
-}
